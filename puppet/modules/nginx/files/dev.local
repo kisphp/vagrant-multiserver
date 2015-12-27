@@ -1,27 +1,14 @@
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server ipv6only=on;
+    listen 80;
 
     server_name dev.local;
 
-    root /home/vagrant/server/dev.local/web;
-
-    location / {
-        try_files $uri /app_dev.php$is_args$args;
-    }
-
-    # DEV
-    # This rule should only be placed on your development environment
-    # In production, don't include this and don't deploy app_dev.php or config.php
-    location ~ ^/(app_dev|config|index)\.php(/|$) {
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-        fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        include fastcgi_params;
-
-        fastcgi_param  SCRIPT_FILENAME  $realpath_root$fastcgi_script_name;
-        fastcgi_param DOCUMENT_ROOT $realpath_root;
-    }
+    keepalive_timeout 0;
 
     error_log /home/vagrant/server/dev.local/nginx-error.log;
     access_log /home/vagrant/server/dev.local/nginx-access.log;
+
+    root /home/vagrant/server/dev.local/web;
+
+    include "srv/sites.conf";
 }

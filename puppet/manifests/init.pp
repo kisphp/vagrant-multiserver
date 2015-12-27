@@ -1,5 +1,5 @@
 exec { 'apt-get-update':
-    command => 'apt-get update && apt-get upgrade',
+    command => 'apt-get update',
     path => '/usr/bin',
 }
 
@@ -13,4 +13,4 @@ file { '/home/vagrant/server/':
     require => Exec['apt-get-update'],
 }
 
-include vim, nginx, php, mysql, nodejs, composer, git
+include vim, git, php, mysql, nginx, nodejs, composer
