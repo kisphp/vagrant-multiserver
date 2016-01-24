@@ -1,4 +1,5 @@
 VM_IP = '10.10.0.82'
+VM_NAME = 'Dev Server'
 SYNC_TYPE = 'nfs'
 
 BASE_DIRECTORY = File.expand_path(File.dirname(__FILE__))
@@ -46,10 +47,10 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.provider :virtualbox do |vb|
-        vb.name = "Dev Server"
+        vb.name = VM_NAME
         vb.customize([
             "modifyvm", :id,
-            "--memory", 1024,
+            "--memory", 2048,
             "--cpus", 1,
             "--vram", 32
         ])
