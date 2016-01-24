@@ -1,5 +1,6 @@
 VM_IP = '10.10.0.82'
-VM_NAME = 'Dev Server'
+VM_NAME = 'Dev Server test'
+VM_HOSTNAME = 'ub.local'
 SYNC_TYPE = 'nfs'
 
 BASE_DIRECTORY = File.expand_path(File.dirname(__FILE__))
@@ -34,7 +35,7 @@ end
 
 Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
-    config.vm.hostname = "dev.local"
+    config.vm.hostname = VM_HOSTNAME
     config.vm.network :private_network, ip: VM_IP
     config.vm.synced_folder "./server", "/home/vagrant/server", type: SYNC_TYPE, create: true
     config.nfs.map_uid = Process.uid
