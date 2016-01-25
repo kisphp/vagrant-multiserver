@@ -1,6 +1,6 @@
 VM_IP = '10.10.0.82'
-VM_NAME = 'Dev Server test'
-VM_HOSTNAME = 'ub.local'
+VM_NAME = 'Dev Server'
+VM_HOSTNAME = 'dev.local'
 SYNC_TYPE = 'nfs'
 
 BASE_DIRECTORY = File.expand_path(File.dirname(__FILE__))

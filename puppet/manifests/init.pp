@@ -13,5 +13,4 @@ file { '/home/vagrant/server/':
     require => Exec['apt-get-update'],
 }
 
-include vim, git, ohmyzsh
-#include vim, git, php, nginx, mysql, nodejs, composer
+include vim, git, php, nginx, mysql, nodejs, composer, ohmyzsh
