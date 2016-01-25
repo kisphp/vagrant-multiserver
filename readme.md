@@ -1,17 +1,17 @@
+## Requirements
+
+- Mac OS X or Ubuntu/Debian Linux
+- Vagrant 1.7.2
+- VirtualBox 4.3.30
+
 ## Install
 
 ```bash
-# download symfony basic project (you may clone your own symfony project)
-git clone git@github.com:symfony/symfony-standard.git
-
-# go into project directory
-cd symfony-standard
-
 # clone vagrant VM
-git clone git@github.com:kisphp/symfony-vagrant.git _vm
+git clone https://github.com/kisphp/vagrant-multiserver.git dev.server
 
 # go into vm directory
-cd _vm
+cd dev.server
 
 # create virtual machine
 vagrant up
@@ -19,11 +19,11 @@ vagrant up
 # login inside virtual machine
 vagrant ssh
 
+# go to project directory
+cd server/dev.local
+
 # add vagrant repository to ignore list in your project
 echo "_vm/" >> .gitignore 
-
-# go to project directory
-cd server
 
 # install dependencies
 composer install
@@ -36,6 +36,7 @@ Composer will require interaction to build `parameters.yml` file.
 
 - curl
 - tree
+- ohmyzsh
 - mc
 - make
 - wget
