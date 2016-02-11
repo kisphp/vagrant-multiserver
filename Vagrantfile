@@ -1,6 +1,7 @@
-VM_IP = '10.10.0.82'
+VM_IP = '10.10.0.70'
 VM_NAME = 'Dev Server'
 VM_HOSTNAME = 'dev.local'
+VM_RAM = 2048
 SYNC_TYPE = 'nfs'
 
 BASE_DIRECTORY = File.expand_path(File.dirname(__FILE__))
@@ -51,7 +52,7 @@ Vagrant.configure("2") do |config|
         vb.name = VM_NAME
         vb.customize([
             "modifyvm", :id,
-            "--memory", 2048,
+            "--memory", VM_RAM,
             "--cpus", 1,
             "--vram", 32
         ])
