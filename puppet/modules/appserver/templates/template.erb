@@ -1,0 +1,30 @@
+<VirtualHost *:80>
+  ServerAdmin <%= @name %>@localhost
+
+  ServerName <%= @name %>
+
+  DocumentRoot /home/vagrant/server/<%= @name %>/public_html
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride None
+  </Directory>
+  <Directory /home/vagrant/server/<%= @name %>/public_html/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order Allow,Deny
+    Allow from all
+  </Directory>
+
+  ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+  <Directory "/usr/lib/cgi-bin">
+    AllowOverride All
+    Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  LogLevel warn
+  CustomLog /home/vagrant/server/<%= @name %>/access.log common
+  ErrorLog /home/vagrant/server/<%= @name %>/error.log
+</VirtualHost>

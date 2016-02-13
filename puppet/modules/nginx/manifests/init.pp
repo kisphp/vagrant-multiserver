@@ -44,13 +44,13 @@ class nginx {
     require => Package['nginx'],
   }
 
-file { 'default-nginx-config-disable':
+  file { 'default-nginx-config-disable':
     path => '/etc/nginx/sites-available/default',
     ensure => absent,
     require => Package['nginx'],
   }
 
-file { 'vagrant-nginx-enable-dev':
+  file { 'vagrant-nginx-enable-dev':
     path => '/etc/nginx/sites-enabled/dev.local',
     target  => '/etc/nginx/sites-available/dev.local',
     ensure => link,

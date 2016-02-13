@@ -1,6 +1,6 @@
-VM_IP = '10.10.0.70'
-VM_NAME = 'Dev Server'
-VM_HOSTNAME = 'dev.local'
+VM_IP = '10.10.0.72'
+VM_NAME = 'Dev Server Apache2'
+VM_HOSTNAME = 'radu.local'
 VM_RAM = 2048
 SYNC_TYPE = 'nfs'
 
@@ -18,21 +18,20 @@ def bold(text); colorize(text, "\033[1;97m"); end
 require 'mkmf'
 has_fresh_repos = false
 
-if !Dir.exists?(SYMFONY_DIRECTORY)
-    if find_executable 'git'
-        puts bold "Cloning Symfony repository ..."
-        system "git clone #{SYMFONY_REPOSITORY} --branch #{SYMFONY_BRANCH} #{SYMFONY_DIRECTORY}"
-        has_fresh_repos = true
-    else
-        raise "ERROR: Required #{SYMFONY_DIRECTORY} could not be found and no git executable was found to solve this problem."
-    end
-end
+#if !Dir.exists?(SYMFONY_DIRECTORY)
+#    if find_executable 'git'
+#        puts bold "Cloning Symfony repository ..."
+#        system "git clone #{SYMFONY_REPOSITORY} --branch #{SYMFONY_BRANCH} #{SYMFONY_DIRECTORY}"
+#        has_fresh_repos = true
+#    else
+#        raise "ERROR: Required #{SYMFONY_DIRECTORY} could not be found and no git executable was found to solve this problem."
+#    end
+#end
 
-if has_fresh_repos
-    puts yellow "Fresh repositories have been cloned"
-    sleep 5
-end
-
+#if has_fresh_repos
+#    puts yellow "Fresh repositories have been cloned"
+#    sleep 5
+#end
 
 Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
