@@ -1,0 +1,14 @@
+server {
+    listen 80;
+
+    server_name tmp.local;
+
+    keepalive_timeout 0;
+
+    error_log /home/vagrant/server/tmp.local/nginx-error.log;
+    access_log /home/vagrant/server/tmp.local/nginx-access.log;
+
+    root /home/vagrant/server/tmp.local/web;
+
+    include "srv/sites.conf";
+}

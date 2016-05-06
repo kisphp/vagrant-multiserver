@@ -1,8 +1,9 @@
 VM_IP = '10.10.0.70'
-VM_NAME = 'Dev Server'
-VM_HOSTNAME = 'dev.local'
+VM_NAME = 'Kisphp Multiple Dev Server'
+VM_HOSTNAME = 'kisphp.dev.local'
 VM_RAM = 2048
 SYNC_TYPE = 'nfs'
+SSH_PORT = 10070
 
 BASE_DIRECTORY = File.expand_path(File.dirname(__FILE__))
 SYMFONY_DIRECTORY = BASE_DIRECTORY + '/server/dev.local'
@@ -41,6 +42,8 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./server", "/home/vagrant/server", type: SYNC_TYPE, create: true
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
+
+    config.vm.network :forwarded_port, guest: 22, host: SSH_PORT
 
     config.vm.provision :puppet do |puppet|
         puppet.manifests_path = 'puppet/manifests'

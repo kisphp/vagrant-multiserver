@@ -17,11 +17,11 @@ class nginx {
     source => 'puppet:///modules/nginx/dev.local',
   }
 
-  file { 'vagrant-nginx-kp':
-    path => '/etc/nginx/sites-available/kp.local',
+  file { 'vagrant-nginx-tmp':
+    path => '/etc/nginx/sites-available/tmp.local',
     ensure => file,
     require => Package['nginx'],
-    source => 'puppet:///modules/nginx/kp.local',
+    source => 'puppet:///modules/nginx/tmp.local',
   }
 
   file { 'srv-directory':
@@ -44,13 +44,13 @@ class nginx {
     require => Package['nginx'],
   }
 
-file { 'default-nginx-config-disable':
+  file { 'default-nginx-config-disable':
     path => '/etc/nginx/sites-available/default',
     ensure => absent,
     require => Package['nginx'],
   }
 
-file { 'vagrant-nginx-enable-dev':
+  file { 'vagrant-nginx-enable-dev':
     path => '/etc/nginx/sites-enabled/dev.local',
     target  => '/etc/nginx/sites-available/dev.local',
     ensure => link,
@@ -61,14 +61,24 @@ file { 'vagrant-nginx-enable-dev':
     ],
   }
 
-  file { 'vagrant-nginx-enable-kp':
-    path => '/etc/nginx/sites-enabled/kp.local',
-    target  => '/etc/nginx/sites-available/kp.local',
+  file { 'vagrant-nginx-enable-tmp':
+    path => '/etc/nginx/sites-enabled/tmp.local',
+    target  => '/etc/nginx/sites-available/tmp.local',
     ensure => link,
     notify => Service['nginx'],
     require => [
-      File['vagrant-nginx-kp'],
+      File['vagrant-nginx-tmp'],
       File['default-nginx-disable'],
     ],
+  }
+
+  file { '/home/vagrant/server/tmp.local':
+    ensure => 'directory',
+    require => Exec['apt-get-update'],
+  }
+
+  file { '/home/vagrant/server/tmp.local/web':
+    ensure => 'directory',
+    require => Exec['apt-get-update'],
   }
 }
