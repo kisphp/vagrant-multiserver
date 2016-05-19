@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
 
-    config.vm.network :forwarded_port, guest: 22, host: SSH_PORT
+    config.vm.network :forwarded_port, guest: 22, host: SSH_PORT, id: 'ssh'
 
     config.vm.provision :puppet do |puppet|
         puppet.manifests_path = 'puppet/manifests'
